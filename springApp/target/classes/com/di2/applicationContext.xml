@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+	    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+		
+<!-- 
+	<bean id="userService" class="com.di2.UserServiceImpl">
+		<property name="name" value="음바페"/>
+		<property name="tel" value="010-010-010"/>
+		<property name="age" value="100"/>
+	</bean>	
+ -->
+	<bean id="userService" class="com.di2.UserServiceImpl"
+			p:name="김자바" p:tel="010-000-0000" p:age="20"/>
+
+	<!-- 프로퍼티를 이용한 의존관계 설정 -->	
+<!-- 	<bean id="user" class="com.di2.UserBean" init-method="init" destroy-method="destroy">
+		<property name="userService" ref="userService"/>	
+	</bean>
+ -->
+
+<!--
+	<bean id="user" class="com.di2.UserBean" init-method="init" destroy-method="destroy">
+ 		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+ -->
+<!-- p 네임스페이스를 이용한 프로퍼티 의존관계 설정 -->
+<!-- xmlns:p="http://www.springframework.org/schema/p"필요 -->
+	<bean id="user" class="com.di2.UserBean"
+			p:userService-ref="userService"/>
+	
+</beans>
